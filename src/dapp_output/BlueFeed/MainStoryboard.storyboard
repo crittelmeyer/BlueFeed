@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="02EAB370-79BD-41A7-B132-6C45847EF268">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <scenes>
+        <!--Sign In-->
+        <scene sceneID="3C66FB8C-93C1-48A7-A0AB-FF4CCA91F3C4">
+            <objects>
+                <viewController storyboardIdentifier="Sign_InViewController" id="8E045943-1F91-4674-9364-0F05471BA055" customClass="Sign_InViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1625B92B-2F73-4C3F-8442-A1800C616422">
+                        <rect key="frame" x="0.0" y="20" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="16" clearButtonMode="whileEditing" id="6D47404A-44AD-49C0-B31C-F21E019192D2">
+                                <rect key="frame" x="23" y="80" width="274" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.13333300000000001" green="0.22745099999999999" blue="0.45882400000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="16" clearButtonMode="whileEditing" id="8EA3D478-4CDD-48B2-8395-FD36ECCC3271">
+                                <rect key="frame" x="23" y="21.5" width="274" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.13333300000000001" green="0.22745099999999999" blue="0.45882400000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.65490199999999998" green="0.78039199999999997" blue="0.90980399999999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" id="97AFEA81-BE14-44AF-BAE9-35471C5C02C5">
+                                <rect key="frame" x="112" y="136" width="96" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                <state key="normal" title="Sign In">
+                                    <color key="titleColor" red="0.196078" green="0.30980400000000002" blue="0.52156899999999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnSignInTapped:" destination="8E045943-1F91-4674-9364-0F05471BA055" eventType="touchUpInside" id="E824F5E6-A39A-438A-91A9-04FD289BCFBE"/>
+                                    <segue destination="051DDD59-CAD0-4641-AD83-96207CBDE8EB" kind="push" id="1CE30BBF-B2AD-4839-BDFC-02C5E92C2AA9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.141176" green="0.61960800000000005" blue="0.85882400000000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Sign In" id="87C8027A-4099-49F6-981A-E04CEA1CA75D"/>
+                    <connections>
+                        <outlet property="signIn" destination="97AFEA81-BE14-44AF-BAE9-35471C5C02C5" id="F55722CB-FF85-42B4-902F-BD9AC06240BE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9B655B5E-645B-4B26-AA87-7B2181D61273" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2E17B55B-982D-468F-A555-5CA50C61E300">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="02EAB370-79BD-41A7-B132-6C45847EF268" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="D87B0FCD-C228-479D-8BA5-6D307AE1B0C0">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8E045943-1F91-4674-9364-0F05471BA055" kind="relationship" relationship="rootViewController" id="2C7890B7-BB8C-4AA5-8785-60A6A12DF802"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="211C2ED5-6DDE-4DC3-8F3F-1E60A352DCC5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-520" y="0.0"/>
+        </scene>
+        <!--Feed-->
+        <scene sceneID="2FA54FF6-06E9-451F-8FD9-2C768801ABFA">
+            <objects>
+                <viewController storyboardIdentifier="FeedViewController" id="051DDD59-CAD0-4641-AD83-96207CBDE8EB" customClass="FeedViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6ACFEB67-2703-4F85-9FBE-9E9640094575">
+                        <rect key="frame" x="0.0" y="20" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="64BBA039-C19A-4BE0-A8D1-E1B4C2FEEA14.png" id="64BBA039-C19A-4BE0-A8D1-E1B4C2FEEA14">
+                                <rect key="frame" x="16" y="-20.5" width="129.5" height="131.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="6 new posts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2B7A200D-D448-4665-9E58-3403B680D7F8">
+                                <rect key="frame" x="143" y="-20.5" width="101.5" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.145098" green="0.623529" blue="0.86274499999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Feed" id="D82A4629-9D91-40B5-B930-1775FCA41F19"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DFB728F6-EFE6-4E19-BAF3-D804C6805552" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="650"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="64BBA039-C19A-4BE0-A8D1-E1B4C2FEEA14.png" width="360" height="480"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
