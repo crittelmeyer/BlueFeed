@@ -8,4 +8,12 @@
  ✔ create a quick working prototype in dapp @started(15-01-06 19:25) @done (15-01-06 20:09) @lasted(0:44)
  ✔ upload and compile the app @started(15-01-06 20:09) @done (15-01-06 20:29) @lasted(0:20)
  ✔ get familiar with the code dapp exported and decide if we want to keep it @started(15-01-06 20:31) @done (15-01-06 20:49) @lasted(0:18) - NOTE: don't like dapp, gonna mock it up in balsamiq
- ☐ mock it up in balsamiq @started(15-01-06 21:21)
+ ✔ mock it up in balsamiq @started(15-01-06 21:21) @done (15-01-06 22:24) @lasted(1:03)
+ ✔ spend an hour or two just fooling around in xcode - use tutorials, whatever, just get refamiliarized with creating UIs in xcode as well as hitting data sources @started(15-01-07 20:13) @done (15-01-08 22:26) @lasted(2:13)
+ ✔ create a view for login with username and password text fields and a "forgot" button @done (15-01-08 15:55)
+ ✔ create a view with a tableview that will be our feed view @done (15-01-08 15:55)
+ ✔ create a basic navigation that starts with the login view and segues to the feed view when the ios keyboard "return" key is pressed @done (15-01-08 15:55)
+ ✔ open the mail app to so user can report forgotten pw when "forgot" button is tapped @done (15-01-08 15:57)
+ ✔ layout prototype cell for feed tableview - use balsamiq designs as guide, don't worry about polishing yet @done (15-01-08 16:00)
+ ☐ create post model @started(15-01-08 16:00)
+ ☐ populate model from REST service
