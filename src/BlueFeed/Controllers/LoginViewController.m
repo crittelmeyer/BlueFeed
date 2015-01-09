@@ -14,6 +14,7 @@
 @end
 
 @implementation LoginViewController
+
 - (IBAction)forgotBtn:(id)sender {
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:admin@bluefeed.com?subject=HELP!&content=I%20forgot%20my%20password!"]];
@@ -49,12 +50,14 @@
 }
 
 - (void)failedLogin:(NSNotification*) notification {
-    UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Title"
-        message:@"This is the message."
-        delegate:self
-        cancelButtonTitle:@"OK"
-        otherButtonTitles:nil];
-    [theAlert show];
+    
+//    UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Title"
+//        message:@"This is the message."
+//        delegate:self
+//        cancelButtonTitle:@"OK"
+//        otherButtonTitles:nil];
+//    [theAlert show];
+    self.badLoginLabel.text = @"bad login. no feed for you.";
 }
 
 @end
