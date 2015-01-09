@@ -27,8 +27,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loggedIn:) name:@"loggedIn" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failedLogin:) name:@"failedLogin" object:nil];
-    
-//    NSString *username = [self.username.text]
 }
 
 - (void)didReceiveMemoryWarning {

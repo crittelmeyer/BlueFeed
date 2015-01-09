@@ -14,7 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *forgotBtn;
 @property (weak, nonatomic) IBOutlet UILabel *badLoginLabel;
 
-- (void)loggedIn;
+- (void)loggedIn:(NSNotification*) notification;
+- (void)failedLogin:(NSNotification*) notification;
 
 @end
 
