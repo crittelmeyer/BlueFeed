@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PostsViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITableView *posts;
+@interface PostsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *postsView;
 
 @end

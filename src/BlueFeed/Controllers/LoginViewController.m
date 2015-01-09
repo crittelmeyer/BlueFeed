@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "LoginManager.h"
 
 @interface LoginViewController ()
 
@@ -14,12 +15,6 @@
 
 @implementation LoginViewController
 - (IBAction)forgotBtn:(id)sender {
-//    UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Title"
-//        message:@"This is the message."
-//        delegate:self
-//        cancelButtonTitle:@"OK"
-//        otherButtonTitles:nil];
-//    [theAlert show];
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:admin@bluefeed.com?subject=HELP!&content=I%20forgot%20my%20password!"]];
 }
@@ -28,6 +23,9 @@
     [super viewDidLoad];
   
     self.password.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loggedIn:) name:@"loggedIn" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failedLogin:) name:@"failedLogin" object:nil];
     
 //    NSString *username = [self.username.text]
 }
@@ -39,11 +37,24 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)password
 {
-    //TODO: Login
+    NSString *un = self.username.text;
+    NSString *pw = self.password.text;
+    [[LoginManager alloc] LoginWithUserName:un password:pw];
     
+    return NO;
+}
+
+- (void)loggedIn:(NSNotification*) notification {
     [self performSegueWithIdentifier:@"postsViewSegue" sender:self];
-    
-    return YES;
+}
+
+- (void)failedLogin:(NSNotification*) notification {
+    UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Title"
+        message:@"This is the message."
+        delegate:self
+        cancelButtonTitle:@"OK"
+        otherButtonTitles:nil];
+    [theAlert show];
 }
 
 @end
