@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lT3-Gc-99I">
-                                <rect key="frame" x="175" y="139" width="250" height="30"/>
+                                <rect key="frame" x="175" y="109" width="250" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="Gv0-hN-afC"/>
                                 </constraints>
@@ -26,7 +26,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VMD-Zz-kda">
-                                <rect key="frame" x="175" y="177" width="250" height="30"/>
+                                <rect key="frame" x="175" y="147" width="250" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="V0C-wN-ydU"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="weI-rK-11z"/>
@@ -35,7 +35,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="go"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gds-X9-daS">
-                                <rect key="frame" x="279" y="215" width="41" height="30"/>
+                                <rect key="frame" x="279" y="185" width="41" height="30"/>
                                 <state key="normal" title="forgot">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -47,7 +47,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="VMD-Zz-kda" secondAttribute="centerX" id="CiP-Lk-obV"/>
-                            <constraint firstItem="lT3-Gc-99I" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="75" id="F7x-dw-2oK"/>
+                            <constraint firstItem="lT3-Gc-99I" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="45" id="F7x-dw-2oK"/>
                             <constraint firstAttribute="centerX" secondItem="lT3-Gc-99I" secondAttribute="centerX" id="GQk-5m-SMc"/>
                             <constraint firstAttribute="centerX" secondItem="Gds-X9-daS" secondAttribute="centerX" id="MkH-R7-kg0"/>
                             <constraint firstItem="VMD-Zz-kda" firstAttribute="top" secondItem="lT3-Gc-99I" secondAttribute="bottom" constant="8" id="SC9-xr-lYU"/>
