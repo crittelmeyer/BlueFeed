@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PostsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface PostsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate,UIImagePickerControllerDelegate, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *postsView;
 @property (weak, nonatomic) NSDictionary *currentUser;

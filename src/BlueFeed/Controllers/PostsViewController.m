@@ -19,6 +19,7 @@
 
 @implementation PostsViewController
 
+AFHTTPClient *httpClient;
 NSArray *feed;
 NSString * const API_URL = @"http://bfapp-bfsharing.rhcloud.com";
 NSDateFormatter *utcDateFormatter;
@@ -26,9 +27,13 @@ NSDateFormatter *utcDateFormatter;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //prep date formatter
     utcDateFormatter = [[NSDateFormatter alloc] init];
     [utcDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
     [utcDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+    
+    //prep http client
+    httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:API_URL]];
     
     [self getFeed];
     
@@ -42,8 +47,8 @@ NSDateFormatter *utcDateFormatter;
 }
 
 - (void)getFeed {
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:API_URL]];
     
+    //get NSDate for one month ago to send as filter
     NSDate *now = [NSDate date];
     NSDate *oneMonthAgo = [now dateByAddingTimeInterval:-30*24*60*60];
 
@@ -99,6 +104,12 @@ NSDateFormatter *utcDateFormatter;
     NSData *currentUserImageData = [NSData dataWithContentsOfURL:currentUserImageUrl];
     UIImage *currentUserProfileImage = [UIImage imageWithData:currentUserImageData];
     feedHeaderCell.profilePic.image = currentUserProfileImage;
+    
+    //wire up image to tap event
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(currentUserImageTapDetected)];
+    singleTap.numberOfTapsRequired = 1;
+    [feedHeaderCell.profilePic setUserInteractionEnabled:YES];
+    [feedHeaderCell.profilePic addGestureRecognizer:singleTap];
     
     //populate feed header username
     feedHeaderCell.usernameLabel.text = [self.currentUser objectForKey:@"username"];
@@ -166,6 +177,106 @@ NSDateFormatter *utcDateFormatter;
     } else {
         return feedHeaderCell;
     }
+}
+
+
+-(void)currentUserImageTapDetected {
+    
+    //prep popup
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Update Profile Pic:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+                            @"Take Photo",
+                            @"Select Photo",
+                            nil];
+    popup.tag = 1;
+    [popup showInView:[UIApplication sharedApplication].keyWindow];
+}
+
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (popup.tag) {
+        case 1: {
+            switch (buttonIndex) {
+                case 0:
+                    [self takePhoto];
+                    break;
+                case 1:
+                    [self selectPhoto];
+                    break;
+                default:
+                    break;
+            }
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+-(void)takePhoto {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+-(void)selectPhoto {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+
+    //upload image
+    [self uploadPhoto:chosenImage];
+    
+    //reload table
+    [self.postsView reloadData];
+}
+
+-(void)uploadPhoto:(UIImage *)image {
+    
+    NSData *imageData = UIImageJPEGRepresentation(image, 1);
+    
+    //prep request
+    NSMutableURLRequest *request = [httpClient requestWithMethod:@"PUT"
+        path:[NSString stringWithFormat:@"/user/%@/profilepic", [self.currentUser objectForKey:@"username"]]
+        parameters:nil];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+//    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+    NSString *contentType = @"application/x-www-form-urlencoded";
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    NSMutableData *postBody = [NSMutableData data];
+    [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"userfile\"; filename=\"%@_pic.jpg\"\r\n", [self.currentUser objectForKey:@"username"]] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[NSData dataWithData:imageData]];
+    [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:postBody];
+    
+    //prep and start operation
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //parse response
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"Got it! %@", responseString);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    [operation start];
 }
 
 -(NSString *)dateDiff:(NSString *)origDate {
