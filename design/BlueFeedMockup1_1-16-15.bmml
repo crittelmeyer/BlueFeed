@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1046" measuredH="1205" mockupW="1038" mockupH="1175">
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1663" measuredH="1205" mockupW="1655" mockupH="1175">
   <controls>
     <control controlID="6" controlTypeID="com.balsamiq.mockups::iPhone" x="125" y="30" w="-1" h="-1" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
@@ -328,5 +328,32 @@
         </control>
       </groupChildrenDescriptors>
     </control>
+    <control controlID="91" controlTypeID="com.balsamiq.mockups::iPhone" x="1381" y="632" w="-1" h="-1" measuredW="282" measuredH="573" zOrder="29" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bgPattern>topOnly</bgPattern>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="92" controlTypeID="com.balsamiq.mockups::Button" x="1416" y="736" w="-1" h="-1" measuredW="64" measuredH="27" zOrder="30" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Cancel</text>
+      </controlProperties>
+    </control>
+    <control controlID="93" controlTypeID="com.balsamiq.mockups::Button" x="1573" y="736" w="-1" h="-1" measuredW="52" measuredH="27" zOrder="31" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Save</text>
+      </controlProperties>
+    </control>
+    <control controlID="94" controlTypeID="com.balsamiq.mockups::Label" x="1495" y="738" w="-1" h="-1" measuredW="56" measuredH="21" zOrder="32" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>New%20Post</text>
+      </controlProperties>
+    </control>
+    <control controlID="95" controlTypeID="com.balsamiq.mockups::TextArea" x="1419" y="779" w="200" h="167" measuredW="200" measuredH="140" zOrder="33" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Typing%20a%20new%20post%21</text>
+      </controlProperties>
+    </control>
+    <control controlID="96" controlTypeID="com.balsamiq.mockups::iPhoneKeyboard" x="1408" y="961" w="-1" h="-1" measuredW="226" measuredH="160" zOrder="34" locked="false" isInGroup="-1"/>
   </controls>
 </mockup>
