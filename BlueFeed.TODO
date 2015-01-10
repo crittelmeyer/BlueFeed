@@ -30,8 +30,8 @@
    ☐ wrap post text 
      ☐ do this after getting "new post" to work, since we need to add some long post messages to test it
  ✔ filter posts by date at view load - default to last month? @started(15-01-10 11:11) @done (15-01-10 11:23) @lasted(0:12)
- ☐ add header cell at top @started(15-01-10 11:23)
- ☐ access camera to change pic
+ ✔ add header cell at top @started(15-01-10 11:23) @done (15-01-10 13:53) @lasted(2:30)
+ ☐ access camera to change pic @started(15-01-10 13:55)
  ☐ change text of back button to "Sign Out"
  ☐ perform logout on back button tap
  ☐ check for internet connection and show error/link to try and reconnect
