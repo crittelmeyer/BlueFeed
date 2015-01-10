@@ -15,5 +15,33 @@
  ✔ create a basic navigation that starts with the login view and segues to the feed view when the ios keyboard "return" key is pressed @done (15-01-08 15:55)
  ✔ open the mail app to so user can report forgotten pw when "forgot" button is tapped @done (15-01-08 15:57)
  ✔ layout prototype cell for feed tableview - use balsamiq designs as guide, don't worry about polishing yet @done (15-01-08 16:00)
- ☐ create post model @started(15-01-08 16:00)
- ☐ populate model from REST service
+ ✔ create post model @done (15-01-09 17:45)
+ ✔ create comment model @done (15-01-09 17:45)
+ ✔ create user model @done (15-01-09 17:45)
+ ✔ Install RestKit @done (15-01-09 17:45)
+ ✔ Read tutorial on using RestKit to populate a tableview @done (15-01-09 17:45)
+   ✔ Seems to require valid JSON. /feed route isn't valid JSON. Waiting to hear back from Rick @done (15-01-09 17:45)
+       ✔ Heard back. He suggests I use something simpler than RestKit's object mapping tools for this @done (15-01-09 17:45)
+ ✔ get login working @done (15-01-09 22:55)
+ ✔ give an error message for failed login @done (15-01-09 22:55)
+ ✔ load feed into tableview @done (15-01-09 22:55)
+ ☐ make posts look good
+ ☐ filter posts by date at view load
+ ☐ add header cell at top
+ ☐ access camera to change pic
+ ☐ change text of back button to "Sign Out"
+ ☐ perform logout on back button tap
+ ☐ check for internet connection and show error/link to try and reconnect
+ ☐ add neverending scrolling
+ ☐ add new post modal
+ ☐ add post w/comments view
+ ☐ 
+
+
+
+
+
+ to ask bf guys:
+   ☐ better way to communicate between modules after an ajax call?
+   ☐ is there a way to sort by date in API?
+   ☐ some posts have post text that says <UIView... -> is this something I should be trying to parse in some special way?
