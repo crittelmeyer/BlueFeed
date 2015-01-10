@@ -87,7 +87,12 @@ NSDateFormatter *utcDateFormatter;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    PostCell *cell = [self.postsView dequeueReusableCellWithIdentifier:@"PostCell"];
+    PostCell *cell = [self.postsView dequeueReusableCellWithIdentifier:@"PostCellView"];
+    if (!cell) {
+
+        [self.postsView registerNib:[UINib nibWithNibName:@"PostCellView" bundle:nil] forCellReuseIdentifier:@"PostCellView"];
+        cell = [self.postsView dequeueReusableCellWithIdentifier:@"PostCellView"];
+    }
 
     if (feed.count > 0) {
         NSDictionary *post = [feed objectAtIndex:indexPath.row];

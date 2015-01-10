@@ -90,67 +90,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="116" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="UZk-ub-vXt">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="PostCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="116" id="hhg-xE-HrM" customClass="PostCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hhg-xE-HrM" id="dkS-Mg-SJO">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tFx-h8-czN">
-                                                    <rect key="frame" x="8" y="8" width="40" height="39.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="3A3-8d-guI"/>
-                                                        <constraint firstAttribute="height" constant="39.5" id="yLj-bS-L4V"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQ0-B9-XNO">
-                                                    <rect key="frame" x="56" y="11" width="79" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="date and time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AdJ-Yd-6cY">
-                                                    <rect key="frame" x="56" y="28" width="192" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.5513533775252526" green="0.5513533775252526" blue="0.5513533775252526" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is a message that is long enough to wrap down to the next line. What happens?" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYx-ib-Mac">
-                                                    <rect key="frame" x="8" y="54" width="584" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kRb-l9-vZc">
-                                                    <rect key="frame" x="8" y="83" width="134" height="30"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                                    <state key="normal" title="# comments"/>
-                                                    <connections>
-                                                        <segue destination="0wJ-vd-mow" kind="show" id="D7F-Qb-llj"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="tFx-h8-czN" firstAttribute="leading" secondItem="dkS-Mg-SJO" secondAttribute="leadingMargin" id="N3j-Ih-Hu8"/>
-                                                <constraint firstItem="kRb-l9-vZc" firstAttribute="leading" secondItem="dkS-Mg-SJO" secondAttribute="leadingMargin" id="RWo-9r-Bz2"/>
-                                                <constraint firstItem="CYx-ib-Mac" firstAttribute="leading" secondItem="dkS-Mg-SJO" secondAttribute="leadingMargin" id="TGj-LH-wfZ"/>
-                                                <constraint firstItem="CYx-ib-Mac" firstAttribute="top" secondItem="dkS-Mg-SJO" secondAttribute="topMargin" constant="46" id="XCt-nX-vD4"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="kRb-l9-vZc" secondAttribute="bottom" constant="-5.5" id="crs-KI-tJl"/>
-                                                <constraint firstItem="tFx-h8-czN" firstAttribute="top" secondItem="dkS-Mg-SJO" secondAttribute="topMargin" id="dyX-td-ZGA"/>
-                                                <constraint firstItem="CYx-ib-Mac" firstAttribute="trailing" secondItem="dkS-Mg-SJO" secondAttribute="trailingMargin" id="hYG-ql-uPR"/>
-                                                <constraint firstItem="CYx-ib-Mac" firstAttribute="top" secondItem="tFx-h8-czN" secondAttribute="bottom" constant="6.5" id="z8Z-xD-U1v"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="authorPic" destination="tFx-h8-czN" id="PaS-Gv-6kd"/>
-                                            <outlet property="postMessageLabel" destination="CYx-ib-Mac" id="sfm-1W-gCp"/>
-                                            <outlet property="timestampLabel" destination="AdJ-Yd-6cY" id="73z-fw-5h5"/>
-                                            <outlet property="usernameLabel" destination="dQ0-B9-XNO" id="BWr-Oo-YvZ"/>
-                                            <outlet property="viewComments" destination="kRb-l9-vZc" id="7fy-jE-KOg"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
