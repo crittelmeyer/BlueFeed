@@ -10,6 +10,7 @@
 
 #import "PostsViewController.h"
 #import "PostCell.h"
+#import "FeedHeaderCell.h"
 #import "PostDetailViewController.h"
 
 @interface PostsViewController ()
@@ -82,61 +83,89 @@ NSDateFormatter *utcDateFormatter;
 #pragma mark Table View methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return feed.count;
+    return feed.count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    PostCell *cell = [self.postsView dequeueReusableCellWithIdentifier:@"PostCellView"];
-    if (!cell) {
-
-        [self.postsView registerNib:[UINib nibWithNibName:@"PostCellView" bundle:nil] forCellReuseIdentifier:@"PostCellView"];
-        cell = [self.postsView dequeueReusableCellWithIdentifier:@"PostCellView"];
-    }
-
-    if (feed.count > 0) {
-        NSDictionary *post = [feed objectAtIndex:indexPath.row];
-        
-        //populate post text
-        NSString *postText = [post objectForKey:@"postText"];
-        cell.postMessageLabel.numberOfLines = 0;
-//        cell.postMessageLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        cell.postMessageLabel.text = [postText stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
-        //Calculate the expected size based on the font and linebreak mode of your label
-//        CGSize maximumLabelSize = CGSizeMake(296,9999);
-//        CGSize expectedLabelSize = [cell.postMessageLabel sizeThatFits:maximumLabelSize];
-//        
-//        //adjust the label the the new height.
-//        CGRect newFrame = cell.postMessageLabel.frame;
-//        newFrame.size.height = expectedLabelSize.height;
-//        [cell.postMessageLabel sizeToFit];
-
-
-        
-        //populate username
-        NSString *username = [[post objectForKey:@"postUser"] objectForKey:@"username"];
-        cell.usernameLabel.text = username;
-        
-        //populate timestamp
-        NSString *timestampOrig = [post objectForKey:@"createdDate"];
-        NSString *timestampFriendly = [self dateDiff:timestampOrig];
-        cell.timestampLabel.text = timestampFriendly;
-        
-        //populate profile pic
-        NSString *imageUrl = [API_URL stringByAppendingString:[[post objectForKey:@"postUser"] objectForKey:@"imageUrl"]];
-        NSURL *url = [NSURL URLWithString:imageUrl];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *image = [UIImage imageWithData:data];
-        cell.authorPic.image = image;
-        
-        //populate comments button
-        NSArray *comments = [post objectForKey:@"comments"];
-        NSString *commentsText = [NSString stringWithFormat:@"%lu comments", comments.count];
-        [cell.viewComments setTitle:commentsText forState:UIControlStateNormal];
-    }
     
-    return cell;
+    //populate feed header cell
+    [self.postsView registerNib:[UINib nibWithNibName:@"FeedHeaderCellView" bundle:nil] forCellReuseIdentifier:@"FeedHeaderCellView"];
+    
+    FeedHeaderCell *feedHeaderCell = [self.postsView dequeueReusableCellWithIdentifier:@"FeedHeaderCellView"];
+    
+    //populate feed header image
+    NSString *currentUserImageUrlString = [API_URL stringByAppendingString:[self.currentUser objectForKey:@"imageUrl"]];
+    NSURL *currentUserImageUrl = [NSURL URLWithString:currentUserImageUrlString];
+    NSData *currentUserImageData = [NSData dataWithContentsOfURL:currentUserImageUrl];
+    UIImage *currentUserProfileImage = [UIImage imageWithData:currentUserImageData];
+    feedHeaderCell.profilePic.image = currentUserProfileImage;
+    
+    //populate feed header username
+    feedHeaderCell.usernameLabel.text = [self.currentUser objectForKey:@"username"];
+    
+    //empty num new posts label
+    feedHeaderCell.numNewPostsLabel.text = @"";
+    
+    if (feed.count > 0) {
+        
+        if (indexPath.row == 0) {
+            
+            //count unread posts to display
+            NSUInteger unreadPostsCount = 0;
+            for (NSUInteger i = 0; i < feed.count; i++) {
+                NSDictionary *currentPost = feed[i];
+                if ([currentPost objectForKey:@"newPostForUser"] != nil) {
+                    unreadPostsCount = unreadPostsCount + 1;
+                }
+            }
+            
+            if (unreadPostsCount > 0) {
+                feedHeaderCell.numNewPostsLabel.text = [NSString stringWithFormat:@"%lu new posts", unreadPostsCount];
+            }
+            
+            return feedHeaderCell;
+        } else {
+            PostCell *postCell = [self.postsView dequeueReusableCellWithIdentifier:@"PostCellView"];
+            if (!postCell) {
+                
+                [self.postsView registerNib:[UINib nibWithNibName:@"PostCellView" bundle:nil] forCellReuseIdentifier:@"PostCellView"];
+                postCell = [self.postsView dequeueReusableCellWithIdentifier:@"PostCellView"];
+            }
+            
+            NSDictionary *post = [feed objectAtIndex:indexPath.row];
+            
+            //populate post text
+            NSString *postText = [post objectForKey:@"postText"];
+            postCell.postMessageLabel.numberOfLines = 0;
+            postCell.postMessageLabel.text = [postText stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            //        [postCell.postMessageLabel sizeToFit];
+            
+            //populate username
+            NSString *username = [[post objectForKey:@"postUser"] objectForKey:@"username"];
+            postCell.usernameLabel.text = username;
+            
+            //populate timestamp
+            NSString *timestampOrig = [post objectForKey:@"createdDate"];
+            NSString *timestampFriendly = [self dateDiff:timestampOrig];
+            postCell.timestampLabel.text = timestampFriendly;
+            
+            //populate profile pic
+            NSString *imageUrl = [API_URL stringByAppendingString:[[post objectForKey:@"postUser"] objectForKey:@"imageUrl"]];
+            NSURL *url = [NSURL URLWithString:imageUrl];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            UIImage *authorPic = [UIImage imageWithData:data];
+            postCell.authorPic.image = authorPic;
+            
+            //populate comments button
+            NSArray *comments = [post objectForKey:@"comments"];
+            NSString *commentsText = [NSString stringWithFormat:@"%lu comments", comments.count];
+            [postCell.viewComments setTitle:commentsText forState:UIControlStateNormal];
+
+            return postCell;
+        }
+    } else {
+        return feedHeaderCell;
+    }
 }
 
 -(NSString *)dateDiff:(NSString *)origDate {

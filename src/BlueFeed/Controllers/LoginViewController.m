@@ -8,12 +8,15 @@
 
 #import "LoginViewController.h"
 #import "LoginManager.h"
+#import "PostsViewController.h"
 
 @interface LoginViewController ()
 
 @end
 
 @implementation LoginViewController
+
+NSDictionary *currentUser;
 
 - (IBAction)forgotBtn:(id)sender {
     
@@ -44,18 +47,28 @@
 }
 
 - (void)loggedIn:(NSNotification*) notification {
+
+    //store user info
+    currentUser = @{@"username": [notification.userInfo objectForKey:@"username"],
+                    @"imageUrl": [notification.userInfo objectForKey:@"imageUrl"]
+                    };
+    
+    //segue to feed view
     [self performSegueWithIdentifier:@"postsViewSegue" sender:self];
 }
 
 - (void)failedLogin:(NSNotification*) notification {
-    
-//    UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Title"
-//        message:@"This is the message."
-//        delegate:self
-//        cancelButtonTitle:@"OK"
-//        otherButtonTitles:nil];
-//    [theAlert show];
     self.badLoginLabel.text = @"bad login. no feed for you.";
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"postsViewSegue"]) {
+        
+        // Get destination view
+        PostsViewController *postsViewController = [segue destinationViewController];
+        
+        postsViewController.currentUser = currentUser;
+    }
 }
 
 @end

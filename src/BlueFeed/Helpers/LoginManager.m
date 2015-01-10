@@ -33,27 +33,39 @@
     [objectManager addRequestDescriptor: [RKRequestDescriptor
                                           requestDescriptorWithMapping:requestMapping objectClass:[LoginRequest class] rootKeyPath:nil
                                           ]];
-    // what to print
+
     RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     RKLogConfigureByName("Restkit/Network", RKLogLevelDebug);
     
     RKObjectMapping *responseMapping = [LoginResponse defineLoginResponseMapping];
     
     [objectManager addResponseDescriptor:[RKResponseDescriptor
-                                          responseDescriptorWithMapping:responseMapping method:RKRequestMethodAny pathPattern:@"" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
-                                          
-                                          ]];
+            responseDescriptorWithMapping:responseMapping
+            method:RKRequestMethodAny
+            pathPattern:@""
+            keyPath:nil
+            statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]
+     ];
     
     [objectManager setRequestSerializationMIMEType: RKMIMETypeJSON];
     
     [objectManager postObject:dataObject path:@"" parameters:nil
-                      success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                          NSLog(@"It Worked: %@", [mappingResult array]);
-                          [[NSNotificationCenter defaultCenter] postNotificationName:@"loggedIn" object:nil];
-                      } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                          NSLog(@"It Failed: %@", error);
-                          [[NSNotificationCenter defaultCenter] postNotificationName:@"failedLogin" object:nil];
-                      }];
+        success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+            LoginResponse *response = [mappingResult firstObject];
+            NSLog(@"It Worked: logged in as %@", [response username]);
+            
+            NSDictionary *userDict = @{@"username": [response username],
+                                       @"imageUrl": [response imageUrl]};
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"loggedIn"
+                object:nil
+                userInfo:userDict
+            ];
+        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+            NSLog(@"It Failed: %@", error);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"failedLogin" object:nil];
+        }
+     ];
 }
 
 @end

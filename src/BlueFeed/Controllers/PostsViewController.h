@@ -11,6 +11,7 @@
 @interface PostsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *postsView;
+@property (weak, nonatomic) NSDictionary *currentUser;
 
 extern NSString * const API_URL;
 
