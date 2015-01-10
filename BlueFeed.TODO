@@ -25,9 +25,12 @@
  ✔ get login working @done (15-01-09 22:55)
  ✔ give an error message for failed login @done (15-01-09 22:55)
  ✔ load feed into tableview @done (15-01-09 22:55)
- ☐ make posts look good
- ☐ filter posts by date at view load
- ☐ add header cell at top
+ ☐ make posts look a little better
+   ✔ format date @started(15-01-10 10:23) @done (15-01-10 10:43) @lasted(0:20)
+   ☐ wrap post text 
+     ☐ do this after getting "new post" to work, since we need to add some long post messages to test it
+ ✔ filter posts by date at view load - default to last month? @started(15-01-10 11:11) @done (15-01-10 11:23) @lasted(0:12)
+ ☐ add header cell at top @started(15-01-10 11:23)
  ☐ access camera to change pic
  ☐ change text of back button to "Sign Out"
  ☐ perform logout on back button tap
@@ -45,3 +48,4 @@
    ☐ better way to communicate between modules after an ajax call?
    ☐ is there a way to sort by date in API?
    ☐ some posts have post text that says <UIView... -> is this something I should be trying to parse in some special way?
+   ☐ how do I get my post text labels to dynamically size to fit 

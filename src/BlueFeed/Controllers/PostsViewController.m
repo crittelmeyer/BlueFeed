@@ -20,9 +20,14 @@
 
 NSArray *feed;
 NSString * const API_URL = @"http://bfapp-bfsharing.rhcloud.com";
+NSDateFormatter *utcDateFormatter;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    utcDateFormatter = [[NSDateFormatter alloc] init];
+    [utcDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+    [utcDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
     
     [self getFeed];
     
@@ -38,11 +43,15 @@ NSString * const API_URL = @"http://bfapp-bfsharing.rhcloud.com";
 - (void)getFeed {
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:API_URL]];
     
-    NSDictionary *requestParams = @{@"asOfDt" : @"2014-12-01T00:00:00.000Z"};
+    NSDate *now = [NSDate date];
+    NSDate *oneMonthAgo = [now dateByAddingTimeInterval:-30*24*60*60];
+
+    NSString *asOfDt = [utcDateFormatter stringFromDate:oneMonthAgo];
+    NSDictionary *requestParams = @{@"asOfDt" : asOfDt};
     
     NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET"
-                                                            path:@"/feed"
-                                                      parameters:requestParams];
+        path:@"/feed"
+        parameters:requestParams];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -128,10 +137,7 @@ NSString * const API_URL = @"http://bfapp-bfsharing.rhcloud.com";
 -(NSString *)dateDiff:(NSString *)origDate {
     
     //convert date string to NSDate
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setFormatterBehavior:NSDateFormatterBehavior10_4];
-    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-    NSDate *convertedDate = [df dateFromString:origDate];
+    NSDate *convertedDate = [utcDateFormatter dateFromString:origDate];
     
     //get diff between today and date of post
     NSDate *todayDate = [NSDate date];
