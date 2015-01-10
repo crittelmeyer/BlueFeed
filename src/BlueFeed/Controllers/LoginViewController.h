@@ -18,4 +18,3 @@
 - (void)failedLogin:(NSNotification*) notification;
 
 @end
-

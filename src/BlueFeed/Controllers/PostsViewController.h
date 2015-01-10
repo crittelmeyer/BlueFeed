@@ -12,4 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *postsView;
 
+extern NSString * const API_URL;
+
 @end
