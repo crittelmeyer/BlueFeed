@@ -15,9 +15,6 @@
 		7B4E9EFD1A5F22C200A6383B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E9EF51A5F22C200A6383B /* AppDelegate.m */; };
 		7B4E9EFE1A5F22C200A6383B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E9EF81A5F22C200A6383B /* LoginViewController.m */; };
 		7B4E9EFF1A5F22C200A6383B /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E9EFA1A5F22C200A6383B /* PostsViewController.m */; };
-		7B4E9F5D1A5F8ED700A6383B /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E9F581A5F8ED700A6383B /* Comment.m */; };
-		7B4E9F5E1A5F8ED700A6383B /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E9F5A1A5F8ED700A6383B /* Post.m */; };
-		7B4E9F5F1A5F8ED700A6383B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E9F5C1A5F8ED700A6383B /* User.m */; };
 		7B4E9F651A5F959F00A6383B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B4E9F631A5F959F00A6383B /* Info.plist */; };
 		7B4E9F661A5F959F00A6383B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E9F641A5F959F00A6383B /* main.m */; };
 		7B54C6B31A5FA031007B8497 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B54C6B21A5FA031007B8497 /* LoginRequest.m */; };
@@ -60,12 +57,6 @@
 		7B4E9EF81A5F22C200A6383B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		7B4E9EF91A5F22C200A6383B /* PostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsViewController.h; sourceTree = "<group>"; };
 		7B4E9EFA1A5F22C200A6383B /* PostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsViewController.m; sourceTree = "<group>"; };
-		7B4E9F571A5F8ED700A6383B /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
-		7B4E9F581A5F8ED700A6383B /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
-		7B4E9F591A5F8ED700A6383B /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
-		7B4E9F5A1A5F8ED700A6383B /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
-		7B4E9F5B1A5F8ED700A6383B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		7B4E9F5C1A5F8ED700A6383B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		7B4E9F631A5F959F00A6383B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BlueFeed/Info.plist; sourceTree = SOURCE_ROOT; };
 		7B4E9F641A5F959F00A6383B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = BlueFeed/main.m; sourceTree = SOURCE_ROOT; };
 		7B54C6B11A5FA031007B8497 /* LoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRequest.h; sourceTree = "<group>"; };
@@ -211,12 +202,6 @@
 			children = (
 				7B54C6C21A618195007B8497 /* PostCell.h */,
 				7B54C6C31A618195007B8497 /* PostCell.m */,
-				7B4E9F571A5F8ED700A6383B /* Comment.h */,
-				7B4E9F581A5F8ED700A6383B /* Comment.m */,
-				7B4E9F591A5F8ED700A6383B /* Post.h */,
-				7B4E9F5A1A5F8ED700A6383B /* Post.m */,
-				7B4E9F5B1A5F8ED700A6383B /* User.h */,
-				7B4E9F5C1A5F8ED700A6383B /* User.m */,
 				7B54C6B11A5FA031007B8497 /* LoginRequest.h */,
 				7B54C6B21A5FA031007B8497 /* LoginRequest.m */,
 				7B54C6B91A5FA453007B8497 /* LoginResponse.h */,
@@ -436,7 +421,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B4E9F5F1A5F8ED700A6383B /* User.m in Sources */,
 				7B54C6C11A616855007B8497 /* PostDetailCell.m in Sources */,
 				7B54C6B81A5FA377007B8497 /* LoginManager.m in Sources */,
 				7B4E9EFE1A5F22C200A6383B /* LoginViewController.m in Sources */,
@@ -445,12 +429,10 @@
 				7B54C6D81A61F3E2007B8497 /* NewPostViewController.m in Sources */,
 				7B54C6BB1A5FA453007B8497 /* LoginResponse.m in Sources */,
 				7B54C6B31A5FA031007B8497 /* LoginRequest.m in Sources */,
-				7B4E9F5E1A5F8ED700A6383B /* Post.m in Sources */,
 				7B4E9EFD1A5F22C200A6383B /* AppDelegate.m in Sources */,
 				7B54C6BE1A61637A007B8497 /* PostDetailViewController.m in Sources */,
 				7B54C6C41A618195007B8497 /* PostCell.m in Sources */,
 				7B4E9F661A5F959F00A6383B /* main.m in Sources */,
-				7B4E9F5D1A5F8ED700A6383B /* Comment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
