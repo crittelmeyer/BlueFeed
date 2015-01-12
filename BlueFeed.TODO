@@ -31,21 +31,18 @@
      ☐ do this after getting "new post" to work, since we need to add some long post messages to test it
  ✔ filter posts by date at view load - default to last month? @started(15-01-10 11:11) @done (15-01-10 11:23) @lasted(0:12)
  ✔ add header cell at top @started(15-01-10 11:23) @done (15-01-10 13:53) @lasted(2:30)
- ☐ access camera to change pic @started(15-01-10 13:55)
- ☐ change text of back button to "Sign Out"
- ☐ perform logout on back button tap
+ ☐ access camera to change pic @started(15-01-10 13:55) @paused(15-01-10 14:31)
+    ☐ sent email asking for help to BlueFletch, awaiting response
+ ✔ change text of back button to "Sign Out" @started(15-01-10 14:44) @done (15-01-10 14:54) @lasted(1:01)
+ ✔ perform logout on back button tap @started(15-01-10 15:15) @done (15-01-10 15:35) @lasted(0:20)
+ ✔ add new post button & modal @started(15-01-10 15:36) @done (15-01-10 16:26) @lasted(0:50)
+ ☐ add post w/comments view @started(15-01-12 13:17)
  ☐ check for internet connection and show error/link to try and reconnect
  ☐ add neverending scrolling
- ☐ add new post modal
- ☐ add post w/comments view
- ☐ 
-
 
 
 
 
  to ask bf guys:
    ☐ better way to communicate between modules after an ajax call?
-   ☐ is there a way to sort by date in API?
-   ☐ some posts have post text that says <UIView... -> is this something I should be trying to parse in some special way?
    ☐ how do I get my post text labels to dynamically size to fit 
