@@ -12,6 +12,7 @@
 #import "PostCell.h"
 #import "FeedHeaderCell.h"
 #import "PostDetailViewController.h"
+#import "NewPostViewController.h"
 
 @interface PostsViewController ()
 
@@ -23,6 +24,7 @@ AFHTTPClient *httpClient;
 NSArray *feed;
 NSString * const API_URL = @"http://bfapp-bfsharing.rhcloud.com";
 NSDateFormatter *utcDateFormatter;
+UIActivityIndicatorView *spinner;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,9 +33,16 @@ NSDateFormatter *utcDateFormatter;
     utcDateFormatter = [[NSDateFormatter alloc] init];
     [utcDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
     [utcDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-    
+
     //prep http client
     httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:API_URL]];
+    
+    spinner = [[UIActivityIndicatorView alloc]
+                                        initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(160, 240);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
     
     [self getFeed];
     
@@ -77,11 +86,24 @@ NSDateFormatter *utcDateFormatter;
         feed = [feedUnsorted sortedArrayUsingDescriptors:sortDescriptors];
         
         //now that we have our data, reload the table view
+        [spinner stopAnimating];
         [self.postsView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
     [operation start];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    feed = [[NSArray alloc] init];
+
+    [self.postsView reloadData];
+    
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    
+    [self getFeed];
 }
 
 #pragma mark -
@@ -179,7 +201,6 @@ NSDateFormatter *utcDateFormatter;
     }
 }
 
-
 -(void)currentUserImageTapDetected {
     
     //prep popup
@@ -191,7 +212,7 @@ NSDateFormatter *utcDateFormatter;
     [popup showInView:[UIApplication sharedApplication].keyWindow];
 }
 
-- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
+-(void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     switch (popup.tag) {
         case 1: {
@@ -231,7 +252,7 @@ NSDateFormatter *utcDateFormatter;
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
 
@@ -239,9 +260,6 @@ NSDateFormatter *utcDateFormatter;
 
     //upload image
     [self uploadPhoto:chosenImage];
-    
-    //reload table
-    [self.postsView reloadData];
 }
 
 -(void)uploadPhoto:(UIImage *)image {
@@ -273,6 +291,9 @@ NSDateFormatter *utcDateFormatter;
         //parse response
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"Got it! %@", responseString);
+        
+        //reload table
+        [self.postsView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
@@ -282,39 +303,51 @@ NSDateFormatter *utcDateFormatter;
 -(NSString *)dateDiff:(NSString *)origDate {
     
     //convert date string to NSDate
-    NSDate *convertedDate = [utcDateFormatter dateFromString:origDate];
+    NSDate *convertedDate = [[utcDateFormatter dateFromString:origDate] dateByAddingTimeInterval:-5*60*60];
     
-    //get diff between today and date of post
-    NSDate *todayDate = [NSDate date];
-    double ti = [convertedDate timeIntervalSinceDate:todayDate];
-    ti = ti * -1;
     
-    //return friendly string depending on time interval
-    if (ti < 60) {
-        return @"less than a minute ago";
-    } else if (ti < 3600) {
-        int diff = round(ti / 60);
-        return [NSString stringWithFormat:@"%d minutes ago", diff];
-    } else if (ti < 86400) {
-        int diff = round(ti / 60 / 60);
-        return[NSString stringWithFormat:@"%d hours ago", diff];
-    } else if (ti < 604800) {
-        int diff = round(ti / 60 / 60 / 24);
-        return[NSString stringWithFormat:@"%d days ago", diff];
-//    } else if (ti < 2629743) {
-//        int diff = round(ti / 60 / 60 / 24 / 7);
-//        return[NSString stringWithFormat:@"%d weeks ago", diff];
-//    } else if (ti < 31536000) {
-//        int diff = round(ti / 60 / 60 / 24 / 30);
-//        return[NSString stringWithFormat:@"%d months ago", diff];
-    } else {
+//    //get diff between today and date of post
+//    NSDate *todayDate = [NSDate date];
+//    double ti = [convertedDate timeIntervalSinceDate:todayDate];
+////    ti = ti * -1;
+//    NSLog(@"%f", ti);
+//    //return friendly string depending on time interval
+//    if (ti < 60) {
+//        return @"less than a minute ago";
+//    } else if (ti < 3600) {
+//        int diff = round(ti / 60);
+//        return [NSString stringWithFormat:@"%d minutes ago", diff];
+//    } else if (ti < 86400) {
+//        int diff = round(ti / 60 / 60);
+//        return[NSString stringWithFormat:@"%d hours ago", diff];
+//    } else if (ti < 604800) {
+//        int diff = round(ti / 60 / 60 / 24);
+//        return[NSString stringWithFormat:@"%d days ago", diff];
+////    } else if (ti < 2629743) {
+////        int diff = round(ti / 60 / 60 / 24 / 7);
+////        return[NSString stringWithFormat:@"%d weeks ago", diff];
+////    } else if (ti < 31536000) {
+////        int diff = round(ti / 60 / 60 / 24 / 30);
+////        return[NSString stringWithFormat:@"%d months ago", diff];
+//    } else {
         NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"M/d/yy 'at' h:mm a"];
         return [dateFormatter stringFromDate:convertedDate];
-    }	
+//    }	
 }
 
+- (IBAction)composeNewPost:(id)sender {
 
+    UIStoryboard *storyBoard = [self storyboard];
+    
+    NewPostViewController *newPostViewController  = [storyBoard instantiateViewControllerWithIdentifier:@"NewPostViewController"];
+    
+    newPostViewController.username = [self.currentUser objectForKey:@"username"];
+    newPostViewController.httpClient = httpClient;
+    
+    [self presentViewController:newPostViewController animated:YES completion:nil];
 
+    
+}
 
 @end

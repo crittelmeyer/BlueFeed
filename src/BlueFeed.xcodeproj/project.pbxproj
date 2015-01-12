@@ -29,6 +29,7 @@
 		7B54C6CB1A618BEA007B8497 /* PostCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B54C6CA1A618BEA007B8497 /* PostCellView.xib */; };
 		7B54C6CF1A619293007B8497 /* FeedHeaderCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B54C6CE1A619293007B8497 /* FeedHeaderCellView.xib */; };
 		7B54C6D21A6193FF007B8497 /* FeedHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B54C6D11A6193FF007B8497 /* FeedHeaderCell.m */; };
+		7B54C6D81A61F3E2007B8497 /* NewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B54C6D71A61F3E2007B8497 /* NewPostViewController.m */; };
 		8179C0EAFBE2A071D1793F4F /* libPods-test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9B255F75E7BC11AF776C1A /* libPods-test.a */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,8 @@
 		7B54C6CE1A619293007B8497 /* FeedHeaderCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedHeaderCellView.xib; sourceTree = "<group>"; };
 		7B54C6D01A6193FF007B8497 /* FeedHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedHeaderCell.h; sourceTree = "<group>"; };
 		7B54C6D11A6193FF007B8497 /* FeedHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedHeaderCell.m; sourceTree = "<group>"; };
+		7B54C6D61A61F3E2007B8497 /* NewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPostViewController.h; sourceTree = "<group>"; };
+		7B54C6D71A61F3E2007B8497 /* NewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPostViewController.m; sourceTree = "<group>"; };
 		9E0C0FD4FB57B04397B901C9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C5C6AC0C7A53D918BF02DC1E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CE56351DD4D9127D792925C5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +200,8 @@
 				7B4E9EFA1A5F22C200A6383B /* PostsViewController.m */,
 				7B54C6BC1A61637A007B8497 /* PostDetailViewController.h */,
 				7B54C6BD1A61637A007B8497 /* PostDetailViewController.m */,
+				7B54C6D61A61F3E2007B8497 /* NewPostViewController.h */,
+				7B54C6D71A61F3E2007B8497 /* NewPostViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -437,6 +442,7 @@
 				7B4E9EFE1A5F22C200A6383B /* LoginViewController.m in Sources */,
 				7B54C6D21A6193FF007B8497 /* FeedHeaderCell.m in Sources */,
 				7B4E9EFF1A5F22C200A6383B /* PostsViewController.m in Sources */,
+				7B54C6D81A61F3E2007B8497 /* NewPostViewController.m in Sources */,
 				7B54C6BB1A5FA453007B8497 /* LoginResponse.m in Sources */,
 				7B54C6B31A5FA031007B8497 /* LoginRequest.m in Sources */,
 				7B4E9F5E1A5F8ED700A6383B /* Post.m in Sources */,

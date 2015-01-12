@@ -32,7 +32,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="weI-rK-11z"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gds-X9-daS">
                                 <rect key="frame" x="279" y="185" width="41" height="30"/>
@@ -75,10 +75,10 @@
             </objects>
             <point key="canvasLocation" x="1412" y="-201"/>
         </scene>
-        <!--Posts View Controller-->
+        <!--Feed-->
         <scene sceneID="11w-ES-dP5">
             <objects>
-                <viewController id="MDm-DO-Oly" customClass="PostsViewController" sceneMemberID="viewController">
+                <viewController title="Feed" id="MDm-DO-Oly" customClass="PostsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ndr-d3-6A6"/>
                         <viewControllerLayoutGuide type="bottom" id="0du-ba-yRf"/>
@@ -90,23 +90,118 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="116" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="UZk-ub-vXt">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="600" id="MWQ-8B-K0h"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="536" id="qGq-ik-zIe"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="MWQ-8B-K0h"/>
+                                        <exclude reference="qGq-ik-zIe"/>
+                                    </mask>
+                                </variation>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="UZk-ub-vXt" firstAttribute="top" secondItem="ndr-d3-6A6" secondAttribute="bottom" constant="-64" id="CD2-79-NYg"/>
-                            <constraint firstItem="0du-ba-yRf" firstAttribute="top" secondItem="UZk-ub-vXt" secondAttribute="bottom" id="FnR-e9-m8j"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="UZk-ub-vXt" secondAttribute="trailing" constant="-16" id="VGM-4X-Ha5"/>
-                            <constraint firstItem="UZk-ub-vXt" firstAttribute="leading" secondItem="vKl-ws-wcY" secondAttribute="leadingMargin" constant="-16" id="hBG-CT-op0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UZk-ub-vXt" secondAttribute="trailing" constant="-16" id="0Ac-fi-LM5"/>
+                            <constraint firstItem="0du-ba-yRf" firstAttribute="top" secondItem="UZk-ub-vXt" secondAttribute="bottom" id="0bB-Uq-bPM"/>
+                            <constraint firstItem="UZk-ub-vXt" firstAttribute="leading" secondItem="vKl-ws-wcY" secondAttribute="leadingMargin" constant="-16" id="YDg-bp-7O5"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="UZk-ub-vXt" secondAttribute="bottom" id="Z21-A9-aQV"/>
+                            <constraint firstItem="UZk-ub-vXt" firstAttribute="top" secondItem="ndr-d3-6A6" secondAttribute="bottom" constant="-64" id="cPp-ZG-uJQ"/>
+                            <constraint firstItem="0du-ba-yRf" firstAttribute="top" secondItem="UZk-ub-vXt" secondAttribute="bottom" id="f3L-Sp-iyQ"/>
+                            <constraint firstItem="UZk-ub-vXt" firstAttribute="top" secondItem="vKl-ws-wcY" secondAttribute="topMargin" id="zN1-03-ewo"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="cPp-ZG-uJQ"/>
+                                <exclude reference="0bB-Uq-bPM"/>
+                                <exclude reference="f3L-Sp-iyQ"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Feed" id="rvE-e2-JHr">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="5oi-Wa-XYX">
+                            <connections>
+                                <action selector="composeNewPost:" destination="MDm-DO-Oly" id="502-Tz-qtI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="composeBtn" destination="5oi-Wa-XYX" id="Heo-6h-n6n"/>
                         <outlet property="postsView" destination="UZk-ub-vXt" id="Adb-5e-3er"/>
+                        <segue destination="0wJ-vd-mow" kind="show" id="Awi-0c-sIb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ef-4A-mJG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2124" y="-201"/>
+        </scene>
+        <!--New Post View Controller-->
+        <scene sceneID="BOv-uJ-4d3">
+            <objects>
+                <viewController storyboardIdentifier="NewPostViewController" id="Xcz-7r-JV4" customClass="NewPostViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l0U-hy-BQf"/>
+                        <viewControllerLayoutGuide type="bottom" id="ToQ-QB-egW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vw2-SG-6PZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKu-bC-KRm">
+                                <rect key="frame" x="0.0" y="86" width="600" height="295"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egN-4e-R30">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="New Post" id="NwR-eU-MPO">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="LZI-f3-eqW">
+                                            <connections>
+                                                <action selector="cancelNewPost:" destination="Xcz-7r-JV4" id="8ck-cd-1VF"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="6tp-tm-35j">
+                                            <connections>
+                                                <action selector="saveNewPost:" destination="Xcz-7r-JV4" id="HcU-Kw-4xT"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SKu-bC-KRm" firstAttribute="leading" secondItem="vw2-SG-6PZ" secondAttribute="leadingMargin" id="0kE-BF-k4u"/>
+                            <constraint firstItem="egN-4e-R30" firstAttribute="top" secondItem="l0U-hy-BQf" secondAttribute="bottom" id="311-ba-She"/>
+                            <constraint firstItem="SKu-bC-KRm" firstAttribute="trailing" secondItem="egN-4e-R30" secondAttribute="trailing" id="6FW-22-f0Y"/>
+                            <constraint firstItem="egN-4e-R30" firstAttribute="leading" secondItem="vw2-SG-6PZ" secondAttribute="leadingMargin" constant="-16" id="SWm-Rc-bRg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="egN-4e-R30" secondAttribute="trailing" constant="-16" id="Tfh-uE-ts6"/>
+                            <constraint firstItem="SKu-bC-KRm" firstAttribute="top" secondItem="egN-4e-R30" secondAttribute="bottom" constant="22" id="WAB-MT-GfO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SKu-bC-KRm" secondAttribute="trailing" id="lRc-GH-seU"/>
+                            <constraint firstItem="ToQ-QB-egW" firstAttribute="top" secondItem="SKu-bC-KRm" secondAttribute="bottom" constant="219" id="lty-Iy-RFm"/>
+                            <constraint firstItem="SKu-bC-KRm" firstAttribute="leading" secondItem="egN-4e-R30" secondAttribute="leading" id="zql-eB-Gvw"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6FW-22-f0Y"/>
+                                <exclude reference="zql-eB-Gvw"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="cancelNewPostBtn" destination="LZI-f3-eqW" id="14T-hJ-G5u"/>
+                        <outlet property="createPostTextView" destination="SKu-bC-KRm" id="0Ex-iE-12C"/>
+                        <outlet property="saveNewPostBtn" destination="6tp-tm-35j" id="HuT-Ed-uFq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sPt-FH-h4q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2124" y="554"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="fkB-Vm-Pb3">
@@ -195,6 +290,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="hEe-ix-OLN">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="9CL-ib-2sF"/>
                     </connections>

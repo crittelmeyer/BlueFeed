@@ -15,7 +15,8 @@
 @property (nonatomic, strong) LoginRequest *dataObject;
 @property (nonatomic, strong) RKObjectManager *objectManager;
 @property (nonatomic, strong) AFHTTPClient *client;
--(void)LoginWithUserName:(NSString*)username password:(NSString*)password;
+-(void)loginWithUserName:(NSString*)username password:(NSString*)password;
+-(void)logout;
 
 @end
 

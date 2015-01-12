@@ -17,6 +17,8 @@
 @implementation LoginViewController
 
 NSDictionary *currentUser;
+BOOL hasLoggedIn;
+LoginManager *loginManager;
 
 - (IBAction)forgotBtn:(id)sender {
     
@@ -28,6 +30,12 @@ NSDictionary *currentUser;
   
     self.password.delegate = self;
     
+    hasLoggedIn = NO;
+    
+    loginManager = [LoginManager alloc];
+    
+    [self.username becomeFirstResponder];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loggedIn:) name:@"loggedIn" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failedLogin:) name:@"failedLogin" object:nil];
 }
@@ -37,11 +45,20 @@ NSDictionary *currentUser;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    self.navigationItem.title = @"Sign In";
+    
+    if (hasLoggedIn) {
+        [loginManager logout];
+    }
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)password
 {
     NSString *un = self.username.text;
     NSString *pw = self.password.text;
-    [[LoginManager alloc] LoginWithUserName:un password:pw];
+
+    [loginManager loginWithUserName:un password:pw];
     
     return NO;
 }
@@ -52,6 +69,10 @@ NSDictionary *currentUser;
     currentUser = @{@"username": [notification.userInfo objectForKey:@"username"],
                     @"imageUrl": [notification.userInfo objectForKey:@"imageUrl"]
                     };
+    
+    self.navigationItem.title = @"Sign Out";
+    
+    hasLoggedIn = YES;
     
     //segue to feed view
     [self performSegueWithIdentifier:@"postsViewSegue" sender:self];

@@ -15,7 +15,7 @@
 
 @implementation LoginManager
 
--(void)LoginWithUserName:(NSString *)username password:(NSString*)password {
+-(void)loginWithUserName:(NSString *)username password:(NSString*)password {
     
     LoginRequest *dataObject = [[LoginRequest alloc] init];
     [dataObject setUsername:username];
@@ -66,6 +66,24 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"failedLogin" object:nil];
         }
      ];
+}
+
+-(void)logout {
+    
+    NSURL *baseURL = [NSURL URLWithString:@"http://bfapp-bfsharing.rhcloud.com/logout"];
+    
+    AFHTTPClient *httpClient = [AFHTTPClient clientWithBaseURL:baseURL];
+    NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST"
+                                                            path:@""
+                                                      parameters:nil];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response: %@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    [operation start];
 }
 
 @end
