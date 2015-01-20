@@ -32,8 +32,11 @@
                         <color key="textColor" red="0.55135337750000002" green="0.55135337750000002" blue="0.55135337750000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="This is a message that is long enough to wrap down to the next line. What happens?" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFN-bJ-axm">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is a message that is long enough to wrap down to the next line. What happens? Seriously" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFN-bJ-axm">
                         <rect key="frame" x="8" y="53" width="584" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="JMa-Am-bY1"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -45,9 +48,11 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="XFN-bJ-axm" firstAttribute="top" secondItem="T3X-FV-PcM" secondAttribute="bottom" constant="6.5" id="0yP-RB-IUm"/>
+                    <constraint firstItem="XFN-bJ-axm" firstAttribute="top" secondItem="T3X-FV-PcM" secondAttribute="bottom" constant="7.5" id="0yP-RB-IUm"/>
                     <constraint firstItem="T3X-FV-PcM" firstAttribute="top" secondItem="APJ-j1-KuJ" secondAttribute="topMargin" constant="-1.5" id="3Pz-iT-0rM"/>
                     <constraint firstItem="T3X-FV-PcM" firstAttribute="leading" secondItem="APJ-j1-KuJ" secondAttribute="leadingMargin" id="WLk-Zf-80P"/>
+                    <constraint firstItem="XFN-bJ-axm" firstAttribute="leading" secondItem="APJ-j1-KuJ" secondAttribute="leadingMargin" id="YDx-Vz-tnk"/>
+                    <constraint firstItem="XFN-bJ-axm" firstAttribute="trailing" secondItem="APJ-j1-KuJ" secondAttribute="trailingMargin" id="nJO-a4-OvM"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

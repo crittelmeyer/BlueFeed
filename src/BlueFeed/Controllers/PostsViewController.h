@@ -14,8 +14,6 @@
 @property (weak, nonatomic) NSDictionary *currentUser;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *composeBtn;
 
--(void)reloadPostsView;
-
 extern NSString * const API_URL;
 
 @end

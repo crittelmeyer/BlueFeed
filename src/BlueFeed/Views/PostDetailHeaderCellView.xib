@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="PostDetailHeaderCellView" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostDetailHeaderCellView" rowHeight="81" id="19m-Ro-G7W" customClass="PostDetailHeaderCell">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="81"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="19m-Ro-G7W" id="pNu-xj-9I4">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pMc-e2-EMV">
+                        <rect key="frame" x="8" y="6" width="40" height="39.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="SiQ-Qf-hI9"/>
+                            <constraint firstAttribute="height" constant="39.5" id="jNL-Iq-3r8"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YbA-dI-TsJ">
+                        <rect key="frame" x="56" y="10" width="79" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="date and time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hD8-ki-nbB">
+                        <rect key="frame" x="56" y="27" width="192" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.55135337750000002" green="0.55135337750000002" blue="0.55135337750000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a message that is long enough to wrap down to the next line. What happens? Seriously?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DoT-P6-ozK">
+                        <rect key="frame" x="8" y="52" width="584" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="lj3-ps-KfF"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="DoT-P6-ozK" secondAttribute="bottom" constant="100" id="1Jm-mc-2cp"/>
+                    <constraint firstItem="pMc-e2-EMV" firstAttribute="leading" secondItem="pNu-xj-9I4" secondAttribute="leadingMargin" id="Aqb-eC-DPw"/>
+                    <constraint firstItem="DoT-P6-ozK" firstAttribute="trailing" secondItem="pNu-xj-9I4" secondAttribute="trailingMargin" id="Q4j-L9-6K0"/>
+                    <constraint firstItem="pMc-e2-EMV" firstAttribute="top" secondItem="pNu-xj-9I4" secondAttribute="topMargin" constant="-1.5" id="ROe-4I-ek7"/>
+                    <constraint firstItem="DoT-P6-ozK" firstAttribute="leading" secondItem="pNu-xj-9I4" secondAttribute="leadingMargin" id="VbN-F4-7BS"/>
+                    <constraint firstItem="DoT-P6-ozK" firstAttribute="top" secondItem="pMc-e2-EMV" secondAttribute="bottom" constant="6.5" id="kN3-lX-28F"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="1Jm-mc-2cp"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="authorPic" destination="pMc-e2-EMV" id="RpK-9l-Db7"/>
+                <outlet property="postMessageLabel" destination="DoT-P6-ozK" id="cPL-83-VqL"/>
+                <outlet property="timestampLabel" destination="hD8-ki-nbB" id="1D9-hi-2uZ"/>
+                <outlet property="usernameLabel" destination="YbA-dI-TsJ" id="ShS-IN-rkK"/>
+            </connections>
+            <point key="canvasLocation" x="241" y="15.5"/>
+        </tableViewCell>
+    </objects>
+</document>

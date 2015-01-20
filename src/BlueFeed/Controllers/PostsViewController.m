@@ -37,13 +37,15 @@ UIActivityIndicatorView *spinner;
     //prep http client
     httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:API_URL]];
     
+    //prep spinner
     spinner = [[UIActivityIndicatorView alloc]
-                                        initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = CGPointMake(160, 240);
     spinner.hidesWhenStopped = YES;
     [self.view addSubview:spinner];
     [spinner startAnimating];
     
+    //retrieve feed data
     [self getFeed];
     
     self.postsView.delegate = self;
@@ -165,14 +167,13 @@ UIActivityIndicatorView *spinner;
                 postCell = [self.postsView dequeueReusableCellWithIdentifier:@"PostCellView"];
             }
             
-            NSDictionary *post = [feed objectAtIndex:indexPath.row];
+            NSDictionary *post = [feed objectAtIndex:indexPath.row - 1];
             
             //populate post text
             NSString *postText = [post objectForKey:@"postText"];
-            postCell.postMessageLabel.numberOfLines = 0;
-            postCell.postMessageLabel.text = [postText stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            //        [postCell.postMessageLabel sizeToFit];
             
+            postCell.postMessageLabel.text = [postText stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                        
             //populate username
             NSString *username = [[post objectForKey:@"postUser"] objectForKey:@"username"];
             postCell.usernameLabel.text = username;
@@ -200,6 +201,18 @@ UIActivityIndicatorView *spinner;
         return feedHeaderCell;
     }
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *storyboard = self.storyboard;
+    PostDetailViewController *postDetailViewController = [storyboard instantiateViewControllerWithIdentifier:@"PostDetailViewController"];
+    
+    NSDictionary *selectedPost = [feed objectAtIndex:indexPath.row - 1];
+    
+    postDetailViewController.post = selectedPost;
+    
+    [self.navigationController pushViewController:postDetailViewController animated:YES];
+}
+
 
 -(void)currentUserImageTapDetected {
     
@@ -305,35 +318,28 @@ UIActivityIndicatorView *spinner;
     //convert date string to NSDate
     NSDate *convertedDate = [[utcDateFormatter dateFromString:origDate] dateByAddingTimeInterval:-5*60*60];
     
-    
-//    //get diff between today and date of post
-//    NSDate *todayDate = [NSDate date];
-//    double ti = [convertedDate timeIntervalSinceDate:todayDate];
-////    ti = ti * -1;
-//    NSLog(@"%f", ti);
-//    //return friendly string depending on time interval
-//    if (ti < 60) {
-//        return @"less than a minute ago";
-//    } else if (ti < 3600) {
-//        int diff = round(ti / 60);
-//        return [NSString stringWithFormat:@"%d minutes ago", diff];
-//    } else if (ti < 86400) {
-//        int diff = round(ti / 60 / 60);
-//        return[NSString stringWithFormat:@"%d hours ago", diff];
-//    } else if (ti < 604800) {
-//        int diff = round(ti / 60 / 60 / 24);
-//        return[NSString stringWithFormat:@"%d days ago", diff];
-////    } else if (ti < 2629743) {
-////        int diff = round(ti / 60 / 60 / 24 / 7);
-////        return[NSString stringWithFormat:@"%d weeks ago", diff];
-////    } else if (ti < 31536000) {
-////        int diff = round(ti / 60 / 60 / 24 / 30);
-////        return[NSString stringWithFormat:@"%d months ago", diff];
-//    } else {
+    //get diff between today and date of post
+    NSDate *todayDate = [NSDate date];
+    double ti = [convertedDate timeIntervalSinceDate:todayDate];
+    ti = ti * -1;
+
+    //return friendly string depending on time interval
+    if (ti < 60) {
+        return @"less than a minute ago";
+    } else if (ti < 3600) {
+        int diff = round(ti / 60);
+        return [NSString stringWithFormat:@"%d minutes ago", diff];
+    } else if (ti < 86400) {
+        int diff = round(ti / 60 / 60);
+        return[NSString stringWithFormat:@"%d hours ago", diff];
+    } else if (ti < 604800) {
+        int diff = round(ti / 60 / 60 / 24);
+        return[NSString stringWithFormat:@"%d days ago", diff];
+    } else {
         NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"M/d/yy 'at' h:mm a"];
         return [dateFormatter stringFromDate:convertedDate];
-//    }	
+    }
 }
 
 - (IBAction)composeNewPost:(id)sender {

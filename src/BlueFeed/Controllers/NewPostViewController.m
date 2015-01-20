@@ -23,7 +23,6 @@ UIActivityIndicatorView *spinner;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     self.createPostTextView.editable = YES;
     self.createPostTextView.text = @"";
     
@@ -53,6 +52,9 @@ UIActivityIndicatorView *spinner;
     spinner.hidesWhenStopped = YES;
     [self.view addSubview:spinner];
     [spinner startAnimating];
+    
+    self.createPostTextView.editable = NO;
+    
     
     NSString *postText = self.createPostTextView.text;
     NSDictionary *requestParams = @{@"username" : [self username],

@@ -37,12 +37,18 @@
  ✔ perform logout on back button tap @started(15-01-10 15:15) @done (15-01-10 15:35) @lasted(0:20)
  ✔ add new post button & modal @started(15-01-10 15:36) @done (15-01-10 16:26) @lasted(0:50)
  ☐ add post w/comments view @started(15-01-12 13:17)
+   ☐ comments textbox and "post" button at bottom, needs to move up when keyboard is activated
+ ☐ 
  ☐ check for internet connection and show error/link to try and reconnect
  ☐ add neverending scrolling
-
+ ☐ polish up everything
+   ☐ fix multiline label overflow in table cells
+   ☐ add bg color to individual posts for easier viewing
+   ☐ better error handling
 
 
 
  to ask bf guys:
    ☐ better way to communicate between modules after an ajax call?
-   ☐ how do I get my post text labels to dynamically size to fit 
+   ☐ how do I get my table cells to dynamically size to fit?
+   ☐ file structure/organization best practices?
